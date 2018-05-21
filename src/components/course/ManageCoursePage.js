@@ -17,12 +17,19 @@ class ManageCoursePage extends Component {
         this.saveCourse = this.saveCourse.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.initialCourse.id != nextProps.initialCourse.id) {
+            this.setState({course: Object.assign({}, nextProps.initialCourse)});
+        }
+    }
+
+
     updateCourseState(event) {
         const field = event.target.name;
         let course = Object.assign({}, this.state.course);
         course[field] = event.target.value;
 
-        return this.setState({course: course});
+        return this.setState({ course: course });
     }
 
     saveCourse(event) {
