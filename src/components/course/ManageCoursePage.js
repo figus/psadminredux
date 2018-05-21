@@ -29,6 +29,7 @@ class ManageCoursePage extends Component {
         event.preventDefault();
 
         this.props.actions.saveCourse(this.state.course);
+        this.context.router.push('/courses');
     }
 
     render() {
@@ -49,6 +50,10 @@ ManageCoursePage.propTypes = {
     initialCourse: PropTypes.object.isRequired,
     authors: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
+};
+
+ManageCoursePage.contextTypes = {
+    router: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
