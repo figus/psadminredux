@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as courseActions from './../../actions/courseActions';
 import CourseForm from './CourseForm';
+import toastr from 'toastr';
 
 class ManageCoursePage extends Component {
     constructor(props, context) {
@@ -20,7 +21,7 @@ class ManageCoursePage extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.initialCourse.id != nextProps.initialCourse.id) {
-            this.setState({course: Object.assign({}, nextProps.initialCourse)});
+            this.setState({ course: Object.assign({}, nextProps.initialCourse) });
         }
     }
 
@@ -35,13 +36,14 @@ class ManageCoursePage extends Component {
 
     saveCourse(event) {
         event.preventDefault();
-        this.setState({saving: true});
+        this.setState({ saving: true });
 
         this.props.actions.saveCourse(this.state.course)
-        .then(() => {
-            this.setState({saving: false});
-            this.context.router.push('/courses');
-        });
+            .then(() => {
+                this.setState({ saving: false });
+                toastr.success('Course saved.');
+                this.context.router.push('/courses');
+            });
     }
 
     render() {
