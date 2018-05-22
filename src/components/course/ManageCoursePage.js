@@ -43,6 +43,10 @@ class ManageCoursePage extends Component {
                 this.setState({ saving: false });
                 toastr.success('Course saved.');
                 this.context.router.push('/courses');
+            })
+            .catch(error => {
+                toastr.error(error);
+                this.setState({saving: false});
             });
     }
 
