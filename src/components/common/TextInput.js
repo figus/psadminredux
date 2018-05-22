@@ -20,8 +20,8 @@ const TextInput = ({ name, label, onChange, placeHolder, value, error }) => {
                 {error && <div className="alert alert-danger">{error}</div>}
             </div>
         </div>
-    )
-}
+    );
+};
 
 TextInput.propTypes = {
     name: PropTypes.string.isRequired,
@@ -30,6 +30,6 @@ TextInput.propTypes = {
     placeHolder: PropTypes.string,
     value: PropTypes.string,
     error: PropTypes.string
-}
+};
 
 export default TextInput;
